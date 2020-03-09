@@ -55,7 +55,7 @@ desc "send customs reports"
 task :send_report_custom => :environment do
   puts "Sending report..."
   reports = Report.on.custom.includes(:days)
-  today = Time.new.strftime('%^A')
+  today = Time.current.utc.strftime('%^A')
   reports.each do |report|
     days = report.days
     days.each do |day|

@@ -14,10 +14,6 @@ class Report < ApplicationRecord
 
 
   scope :on, ->{ where("state = ?", true) }
-  scope :daily, ->{ where("prevalence = ?", prevalences[:daily]) }
-  scope :weekly, ->{ where("prevalence = ?", prevalences[:weekly]) }
-  scope :monthly, ->{ where("prevalence = ?", prevalences[:monthly]) }
-  scope :custom, ->{ where("prevalence = ?", prevalences[:custom]) }
 
   def prevalence_validate
     if custom? && days.empty?

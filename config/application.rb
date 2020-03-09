@@ -12,6 +12,8 @@ module PizzaNew
     config.load_defaults 6.0
     config.autoload_paths += %W(#{config.root}/app)
     config.active_job.queue_adapter = :delayed_job
+    config.time_zone = "America/La_Paz"
+    config.active_record.default_timezone = :utc
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
