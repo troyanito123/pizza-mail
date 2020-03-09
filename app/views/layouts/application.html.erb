@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PizzaNew</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <div class="d-flex flex-column h-screen justify-content-between">
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+
+    <main>
+      <%= render 'layouts/flash_message' %>
+      <%= yield %>
+    </main>
+
+    <footer class="bg-white text-black-50 text-center pt-3 shadow">
+      <p class="text-primary font-weight-light">PizzaMail @ <%= Time.now.strftime("%Y") %></p>
+    </footer>
+  </div>
+</body>
+</html>

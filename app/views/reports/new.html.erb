@@ -1,0 +1,63 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-12 col-md-8 bg-white my-3 shadow mx-auto">
+      <h1 class="text-center">Reports</h1>
+      <hr>
+      <%= form_for @report, url: reports_path, method: :post do |f| %>
+
+        <div class="form-group">
+          <%= f.label 'Start  in:' %>
+          <%= f.date_field :day, discard_year: true %>
+
+          <small class="text-danger">
+            <%= @report.errors.messages[:day].first %>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :Hour %>
+          <%= f.time_select :time, {time_zone: '-04'} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :Prevalence %>
+          <%= f.select :prevalence, Report.prevalences %>
+        </div>
+
+        <div id="custom">
+
+        </div>
+
+        <small class="text-danger">
+          <%= @report.errors[:prevalence].first %>
+        </small>
+
+
+        <div class="form-group">
+          <%= f.label :Email %>
+          <%= f.email_field :email %>
+
+          <small class="text-danger">
+            <%= @report.errors.messages[:email].first %>
+          </small>
+        </div>
+
+        <%= f.submit :Create, class: 'btn btn-primary btn-block mb-2' %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#report_prevalence').on('change', function () {
+            $.ajax({
+                url: "<%= custom_path %>",
+                type: "POST",
+                data: {prevalence: $(this).val()}
+            });
+        });
+    });
+</script>

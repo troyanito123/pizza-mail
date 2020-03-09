@@ -1,0 +1,18 @@
+<h1>Your order was received</h1>
+
+<strong>YOUR PIZZA CONTAINS</strong>
+<ul>
+<% @ingredients.each do |ingredient| %>
+  <li><%= ingredient.name %></li>
+<% end %>
+</ul>
+<strong>Cost: </strong><%= @pizza.cost %>
+<strong>Size: </strong><%= @pizza.size.name %>
+<strong>Order at: </strong><%= I18n.l(@pizza.created_at, format: :long) %>
+
+<p>We will send your order to the address: <strong> <%= @user.address %> </strong> </p>
+
+<p>We appreciate your preference</p>
+
+
+

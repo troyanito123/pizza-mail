@@ -1,0 +1,16 @@
+Your order was received
+=======================
+
+YOUR PIZZA CONTAINS
+
+<% @ingredients.each do |ingredient| %>
+ * <%= ingredient.name %>
+<% end %>
+
+Cost: <%= @pizza.cost %>
+Size: <%= @pizza.size.name %>
+Order at: <%= I18n.l(@pizza.created_at, format: :long) %>
+
+We will send your order to the address: <%= @user.address %>
+
+We appreciate your preference

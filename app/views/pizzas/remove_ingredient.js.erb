@@ -1,0 +1,10 @@
+
+$('#<%= @type %>-remove').remove();
+$('#<%= @type %>').remove();
+$('#<%= @type %>')
+     .append(
+         "<%= j link_to 'add', add_path(type: @type), remote: true, method: :post, id: @type + '-add',class: 'btn btn-primary btn-block'%>"
+     );
+$('#cost').html("<%= j current_cost %>");
+$('#size').html("<%= j current_size %>");
+

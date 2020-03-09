@@ -1,0 +1,19 @@
+<div class="container bg-white p-4 shadow ">
+  <h1 class="text-center">PREVIEW</h1>
+  <h3>Your pizza have:</h3>
+  <% current_ingredients.each do |ingredient| %>
+    <p><%= ingredient%></p>
+  <% end %>
+  <h3>Size:</h3>
+  <p><%= current_size %></p>
+  <h3>Cost:</h3>
+  <p><%= current_cost %></p>
+  <div class="row">
+    <div class="col">
+      <%= link_to 'Send Order', create_path, method: :post, class: 'btn btn-primary btn-block' %>
+    </div>
+    <div class="col">
+      <%= link_to 'Cancel', pizza_path, class: 'btn btn-danger btn-block' %>
+    </div>
+  </div>
+</div>

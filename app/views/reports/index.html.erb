@@ -1,0 +1,51 @@
+<div class="container bg-white mx-auto py-2 shadow">
+  <h1 class="text-center">Reports</h1>
+  <table class="table">
+    <thead>
+    <th>Start in:</th>
+    <th>Hour:</th>
+    <th>Prevalence:</th>
+    <th>Days?</th>
+    <th>To:</th>
+    <th>State:</th>
+    <th>Status</th>
+    <th>Options:</th>
+    </thead>
+    <tbody>
+    <% @reports.each do |report| %>
+
+        <tr id="report-<%= report.id %>">
+          <td> <%= report.day.strftime('%b-%d') %> </td>
+          <td> <%= report.time.strftime('%H:%M') %> </td>
+          <td> <%= report.prevalence %> </td>
+          <td>
+            <% if report.days.empty? && report.prevalence == 'weekly'%>
+               <%= report.time.strftime('%A') %>
+            <% else %>
+              <% report.days.each do |d| %>
+                <%= d.name %>
+              <% end %>
+            <% end %>
+
+          </td>
+          <td> <%= report.email %> </td>
+          <td>
+            <div id="<%= report.id %>">
+              <% if report.state %>
+                <%= link_to :On, off_path(report), method: :delete, remote: true, id: "#{report.id}-on", class: 'badge badge-primary' %>
+              <% else %>
+                <%= link_to :Off, on_path(report), method: :post, remote: true, id: "#{report.id}-off", class: 'badge badge-danger' %>
+              <% end %>
+            </div>
+          </td>
+          <td> <%= report.status %> </td>
+          <td>
+            <%= link_to :Delete, report_path(report), method: :delete, remote: true,
+                        class: 'badge badge-danger', data: {confirm: 'Are you destroy this report?'} %>
+          </td>
+        </tr>
+
+    <% end %>
+    </tbody>
+  </table>
+</div>

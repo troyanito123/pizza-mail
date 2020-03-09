@@ -1,0 +1,9 @@
+$('#<%= @type %>-add').remove();
+$('#<%= @type %>')
+    .append(
+        "<%= j link_to 'Remove', remove_path(type: @type), remote: true, method: :post, id: @type + '-remove', class: 'btn btn-danger btn-block' %>"
+    );
+
+$('#cost').html("<%= j current_cost %>");
+
+$('#ingredients').append("<span id=\"<%= j @type %>\" class=\"badge badge-primary\"> <%= j @type %> </span> ");

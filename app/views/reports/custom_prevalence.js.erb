@@ -1,0 +1,8 @@
+if (<%= @prevalence == '3' %>)
+
+      $('#custom').html(
+          "<%= j render partial: 'day', collection: @days %>"
+      )
+
+else
+    $('#custom').empty();

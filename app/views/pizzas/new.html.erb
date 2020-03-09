@@ -1,0 +1,42 @@
+<div class="container bg-white p-4 shadow ">
+  <h1>Create your own Pizza</h1>
+
+  <div class="row">
+
+    <div class="col-12 col-sm-6 col-lg-7">
+      <h5>Your Pizza have</h5>
+      <div class="row">
+
+        <div class="col-12 col-sm-6 col-md-4">
+          <div>
+            <strong>Size: </strong>
+            <p id="size"><%= current_size %></p>
+          </div>
+          <div>
+            <strong>Cost: </strong>
+            <p id="cost"><%= current_cost %></p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-8">
+          <strong>Ingredients: </strong>
+          <div id="ingredients"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-5">
+      <%= render partial: 'size', collection: @sizes %>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
+    <%= render partial: 'ingredient', collection: @ingredients %>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col">
+      <%= link_to 'Create', preview_path, class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+</div>

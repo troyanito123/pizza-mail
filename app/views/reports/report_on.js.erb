@@ -1,0 +1,4 @@
+$('#<%= @id %>-off').remove();
+$('#<%= @id %>').append(
+    "<%= j link_to :On, off_path(@report), method: :delete, remote: true, id: "#{@id}-on", class: 'badge badge-primary' %>"
+);

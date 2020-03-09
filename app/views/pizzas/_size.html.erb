@@ -1,0 +1,3 @@
+<%= link_to size.name, change_path(size: size.code),
+            remote: true, method: :post, id: size.code,
+            class: size.code == 'small' ? 'btn btn-primary btn-block' : 'btn btn-secondary btn-block'%>

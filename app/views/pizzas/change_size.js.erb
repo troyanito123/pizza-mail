@@ -1,0 +1,8 @@
+$('#<%= @old_size %>').removeClass('btn-primary');
+$('#<%= @old_size %>').addClass('btn-secondary');
+
+$('#<%= @size %>').removeClass('btn-secondary');
+$('#<%= @size %>').addClass('btn-primary');
+
+$('#cost').html("<%= j current_cost %>");
+$('#size').html("<%= j current_size %>");
