@@ -18,14 +18,7 @@ ingredients = Ingredient.create!([
                                     {name: 'Parmesan', code: 'parmesan'},
                                     {name: 'Pineapple', code: 'pineapple'},
                                 ])
-User.create!(name: 'admin', email: 'admin@test.com', address: 'san martin 123', password: '123123', password_confirmation: '123123')
-
-Day.create!([
-               {name: 'Monday', code: 'MONDAY'},
-               {name: 'Tuesday', code: 'TUESDAY'},
-               {name: 'Wednesday', code: 'WEDNESDAY'},
-               {name: 'Thursday', code: 'THURSDAY'},
-               {name: 'Friday', code: 'FRIDAY'},
-               {name: 'Saturday', code: 'SATURDAY'},
-               {name: 'Sunday', code: 'SUNDAY'},
-           ])
+User.create!([
+                 {name: 'admin', email: 'admin@test.com', address: 'san martin 123', password: '123123', password_confirmation: '123123'},
+                 {name: 'chachapuma', email: 'chachapuma123@gmail.com', address: 'san martin 123', password: '123123', password_confirmation: '123123'}
+             ])
