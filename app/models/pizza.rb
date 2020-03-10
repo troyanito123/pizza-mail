@@ -10,5 +10,18 @@ class Pizza < ApplicationRecord
   scope :weekly, ->{where("created_at BETWEEN ? AND ?", Time.new.beginning_of_week, Time.new.end_of_week)}
   scope :monthly, ->{where("created_at BETWEEN ? AND ?", Time.new.beginning_of_month, Time.new.end_of_month)}
 
+  PREVALENCE = %w(daily weekly monthly custom).freeze
+  scope :prevalence, -> (prevalence) {
+    case prevalence
+    when PREVALENCE[0]
+      daily
+    when PREVALENCE[1]
+      weekly
+    when PREVALENCE[2]
+      monthly
+    when PREVALENCE[3]
+      daily
+    end
+  }
 
 end

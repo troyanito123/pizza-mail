@@ -10,10 +10,10 @@
     <% if logged_in? %>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to 'My pizzas', my_pizzas_path, class: 'nav-link' %>
+          <%= link_to 'My pizzas', pizzas_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Pizza', pizza_path, class: 'nav-link' %>
+          <%= link_to 'Pizza', new_pizza_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
           <%= link_to 'Reports', reports_path, class: 'nav-link' %>
@@ -28,7 +28,7 @@
             <%= current_user.name %>
           </a>
           <div class="dropdown-menu" >
-            <%= link_to 'Profile', edit_user_path(current_user), class: 'dropdown-item' %>
+            <%= link_to 'Profile', '#', class: 'dropdown-item' %>
             <%= link_to 'logout', logout_path, method: :delete, class: 'dropdown-item' %>
           </div>
         </li>

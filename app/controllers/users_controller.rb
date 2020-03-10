@@ -5,13 +5,14 @@ class UsersController < ApplicationController
   skip_before_action :logged_user
   before_action :user_login
 
+  helper_method :user # this is necessary?
+
   def new
-    @user = User.new
+    user
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    if user.save
       flash[:success] = I18n.t 'user.create'
       redirect_to login_path
     else
@@ -22,5 +23,18 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :address, :password, :password_confirmation)
+  end
+
+  # Helper method
+  def user
+    @user ||=
+        case action_name
+        when "new"
+          User.new
+        when "create"
+          User.new(user_params)
+        else
+          User.find(params[:id])
+        end
   end
 end

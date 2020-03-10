@@ -16,23 +16,24 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :Hour %>
-          <%= f.time_select :time, {time_zone: '-04'} %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :Prevalence %>
-          <%= f.select :prevalence, Report.prevalences %>
+          <%= f.label :Frequency %>
+          <%= f.select :prevalence, Report.prevalences.keys.to_a %>
         </div>
 
         <div id="custom">
-
+          <% if @report.custom? %>
+            <%= render partial: 'day', collection: @days %>
+          <% end %>
         </div>
 
-        <small class="text-danger">
+        <small class="text-danger" id="error-prevalence">
           <%= @report.errors[:prevalence].first %>
         </small>
 
+        <div class="form-group">
+          <%= f.label :Hour %>
+          <%= f.time_select :time %>
+        </div>
 
         <div class="form-group">
           <%= f.label :Email %>

@@ -17,7 +17,9 @@
     </header>
 
     <main>
-      <%= render 'layouts/flash_message' %>
+      <div id="error">
+        <%= render 'layouts/flash_message' %>
+      </div>
       <%= yield %>
     </main>
 

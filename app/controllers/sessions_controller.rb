@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: session_params['email'])
-    if @user && @user.authenticate(session_params['password'])
+    @user = User.find_by(email: session_params[:email])
+    if @user && @user.authenticate(session_params[:password])
       save_user(@user.id)
-      redirect_to pizza_path
+      redirect_to new_pizza_path
     else
       flash[:danger] = I18n.t 'session.error.login'
-      redirect_to root_path
+      redirect_to login_path
     end
   end
 

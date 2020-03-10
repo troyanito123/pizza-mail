@@ -2,6 +2,9 @@ class ReportsController < ApplicationController
 
   include ReportHelper
 
+  before_action :set_days, only: [:custom_prevalence, :create]
+  before_action :set_report, only: [:report_off, :report_on, :destroy]
+
   def index
     @reports = Report.all.includes(:days)
   end
@@ -12,13 +15,9 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-    prevalence = params[:report][:prevalence].to_i
-    @report.prevalence = prevalence
-
-    if @report.custom? && params.include?("custom")
+    if params.include?(:custom)
       @report.days = create_days(params[:custom][:days])
     end
-
     if @report.save
       flash[:success] = I18n.t 'report.create'
       redirect_to reports_path
@@ -28,14 +27,11 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    report = Report.find(params['id'])
-    @id = report.id
-    report.destroy
+    @report.destroy
+    flash.now[:danger] = I18n.t 'report.destroy'
   end
 
   def report_on
-    @id = params['id']
-    @report = Report.find(@id)
     @report.state = true
     unless @report.save
       render :index
@@ -43,8 +39,6 @@ class ReportsController < ApplicationController
   end
 
   def report_off
-    @id = params['id']
-    @report = Report.find(@id)
     @report.state = false
     unless @report.save
       render :index
@@ -52,13 +46,19 @@ class ReportsController < ApplicationController
   end
 
   def custom_prevalence
-    @prevalence = params['prevalence']
-    @days = Day.all
+    @prevalence = params[:prevalence]
   end
 
   private
+    def report_params
+      params.require(:report).permit(:day, :prevalence, :time, :email)
+    end
 
-  def report_params
-    params.require(:report).permit(:day, :time, :email)
-  end
+    def set_days
+      @days = Day.all
+    end
+
+    def set_report
+      @report ||= Report.find(params[:id])
+    end
 end

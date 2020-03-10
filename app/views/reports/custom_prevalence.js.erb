@@ -1,8 +1,10 @@
-if (<%= @prevalence == '3' %>)
+if (<%= @prevalence == 'custom' %>) {
 
-      $('#custom').html(
-          "<%= j render partial: 'day', collection: @days %>"
-      )
+    $('#custom').html("<%= j render partial: 'day', collection: @days %>");
+    $('#error-prevalence').show();
+}
 
-else
+else {
     $('#custom').empty();
+    $('#error-prevalence').hide();
+}

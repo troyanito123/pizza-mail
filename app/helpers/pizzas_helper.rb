@@ -24,11 +24,21 @@ module PizzasHelper
     @ingredients = session[:ingredients]
   end
 
-  # Return a Object pizza
+  def current_name
+    "Pizza #{current_size} with #{current_ingredients.first} and #{current_ingredients.last}"
+  end
+
+  def save_changes_on_pizza
+    pizza = create_pizza
+    save_cost(pizza.get_cost(current_size))
+  end
+
+  # Return a Object pizza with ingredient
   def create_pizza
     pizza = PizzaModule::PizzaDefault.new
+    factory = PizzaModule::PizzaFactory
     current_ingredients.each do |ingredient|
-      pizza_with_ingredient = get_class(pizza, ingredient)
+      pizza_with_ingredient = factory.get_ingredient(ingredient).new pizza
       pizza = pizza_with_ingredient
     end
     pizza
@@ -37,21 +47,6 @@ module PizzasHelper
   # Return array of Ingredient
   def get_ingredients
     current_ingredients.collect { |ingredient| Ingredient.find_by(code: ingredient) }
-  end
-
-
-  private
-  def get_class(pizza, ingredient)
-    case ingredient
-    when 'parmesan'
-      PizzaModule::Parmesan.new pizza
-    when 'mozzarella'
-      PizzaModule::Mozzarella.new pizza
-    when 'pineapple'
-      PizzaModule::Pineapple.new pizza
-    when 'mushroom'
-      PizzaModule::Mushroom.new pizza
-    end
   end
 
 end

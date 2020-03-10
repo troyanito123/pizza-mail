@@ -10,10 +10,10 @@
   <p><%= current_cost %></p>
   <div class="row">
     <div class="col">
-      <%= link_to 'Send Order', create_path, method: :post, class: 'btn btn-primary btn-block' %>
+      <%= link_to 'Send Order', pizzas_path, method: :post, class: 'btn btn-primary btn-block' %>
     </div>
     <div class="col">
-      <%= link_to 'Cancel', pizza_path, class: 'btn btn-danger btn-block' %>
+      <%= link_to 'Cancel', new_pizza_path, class: 'btn btn-danger btn-block' %>
     </div>
   </div>
 </div>
