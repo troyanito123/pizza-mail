@@ -1,7 +1,8 @@
 module ReportHelper
 
-  def create_days(custom_days)
-    custom_days.collect { |day| Day.find_by(code: day) }
+  def days(custom_days)
+    custom_days.delete("")
+    custom_days.collect { |day| Day.find(day) }
   end
 
 end

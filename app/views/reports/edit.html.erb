@@ -4,7 +4,7 @@
     <div class="col-12 col-md-8 bg-white my-3 shadow mx-auto">
       <h1 class="text-center">Reports</h1>
       <hr>
-      <%= form_for @report, url: reports_path, method: :post do |f| %>
+      <%= form_for @report, url: report_path, method: :put do |f| %>
 
         <div class="form-group">
           <%= f.label 'Start  in:' %>
@@ -16,13 +16,13 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :Frequency %>
+          <%= f.label :Prevalence %>
           <%= f.select :prevalence, Report.prevalences.keys.to_a %>
         </div>
 
         <div id="custom">
           <% if @report.custom? %>
-            <%= collection_check_boxes(:custom, :days, @days, :id, :name, checked: @report.days.map(&:to_param) )%>
+            <%= collection_check_boxes(:custom, :days, @days, :id, :name, { checked: @report.days.map(&:to_param) })%>
           <% end %>
         </div>
 
@@ -57,7 +57,7 @@
             $.ajax({
                 url: "<%= custom_path %>",
                 type: "POST",
-                data: {prevalence: $(this).val()}
+                data: {prevalence: $(this).val(), report: <%= @report.id %>}
             });
         });
     });

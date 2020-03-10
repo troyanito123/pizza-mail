@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   skip_before_action :logged_user
   before_action :user_login
 
-  helper_method :user # this is necessary?
-
   def new
     user
   end

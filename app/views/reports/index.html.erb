@@ -40,6 +40,7 @@
           </td>
           <td> <%= report.status %> </td>
           <td>
+            <%= link_to :Edit, edit_report_path(report), class: 'badge badge-secondary'%>
             <%= link_to :Delete, report_path(report), method: :delete, remote: true,
                         class: 'badge badge-danger', data: {confirm: 'Are you destroy this report?'} %>
           </td>

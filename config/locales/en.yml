@@ -33,6 +33,7 @@ en:
   hello: "Hello world"
 
   not_found: "Resource not found ..."
+  not_authorized: "Page not authorized for you ..."
 
   session:
     error:

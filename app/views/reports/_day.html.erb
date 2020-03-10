@@ -1,3 +1,5 @@
-<%= check_box(:custom, :days, {:multiple => true}, day.code, nil) %>
-<%= label_tag(day.code, day.name) %>
+<%#= check_box(:custom, :days, {:multiple => true}, day.code, nil) %>
+<%#= label_tag(day.code, day.name) %>
 
+<%= check_box_tag "days[]", day.id, {} %>
+<%= day.name %>

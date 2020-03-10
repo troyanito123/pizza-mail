@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    flash[:warning] = I18n.t 'not_authorize'
+    flash[:warning] = I18n.t 'not_authorized'
     redirect_back fallback_location: root_path
   end
 
