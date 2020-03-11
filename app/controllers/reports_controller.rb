@@ -5,17 +5,17 @@ class ReportsController < ApplicationController
   before_action :set_days, only: [:new, :create, :edit, :update, :custom_prevalence]
 
   DAYS = [
-      {:code => :MONDAY, :name => :Monday},
-      {:code => :TUESDAY, :name => :Tuesday},
-      {:code => :WEDNESDAY, :name => :Wednesday},
-      {:code => :THURSDAY, :name => :Thursday},
-      {:code => :FRIDAY, :name => :Friday},
-      {:code => :SATURDAY, :name => :Saturday},
-      {:code => :SUNDAY, :name => :Sunday},
+      {:code => 'MONDAY', :name => 'Monday'},
+      {:code => 'TUESDAY', :name => 'Tuesday'},
+      {:code => 'WEDNESDAY', :name => 'Wednesday'},
+      {:code => 'THURSDAY', :name => 'Thursday'},
+      {:code => 'FRIDAY', :name => 'Friday'},
+      {:code => 'SATURDAY', :name => 'Saturday'},
+      {:code => 'SUNDAY', :name => 'Sunday'},
   ].freeze
 
   def index
-    @reports = Report.all
+    @reports = Report.all.order("created_at ASC")
   end
 
   def new
@@ -38,9 +38,6 @@ class ReportsController < ApplicationController
   def update
     report.assign_attributes report_params
     report.days = nil unless report.custom?
-    # unless report.custom?
-    #   report.days = nil
-    # end
     if report.save
       flash[:success] = I18n.t 'report.update'
       redirect_to reports_path
@@ -70,6 +67,11 @@ class ReportsController < ApplicationController
 
   def custom_prevalence
     @prevalence = params[:prevalence]
+    if params.include?(:id)
+      report
+    else
+      @report = Report.new
+    end
   end
 
   private

@@ -16,10 +16,11 @@
       <div class="form-group">
         <%= f.label :Frequency %>
         <%= f.select :prevalence, Report.prevalences.keys.to_a %>
-      </div>
 
-      <div id="custom">
-          <%= render partial: 'day', collection: @days if @report.custom?%>
+        <div id="custom">
+          <%= render partial: 'day', collection: @days if @report.custom? %>
+        </div>
+
       </div>
 
       <small class="text-danger" id="error-prevalence">
@@ -52,15 +53,3 @@
     <% end %>
   </div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#report_prevalence').on('change', function () {
-            $.ajax({
-                url: "<%= custom_path %>",
-                type: "POST",
-                data: {prevalence: $(this).val()}
-            });
-        });
-    });
-</script>

@@ -4,3 +4,14 @@
 
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#report_prevalence').on('change', function () {
+            $.ajax({
+                url: "<%= custom_path %>",
+                type: "POST",
+                data: {prevalence: $(this).val()}
+            });
+        });
+    });
+</script>

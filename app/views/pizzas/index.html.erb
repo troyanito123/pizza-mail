@@ -1,17 +1,21 @@
-<div class="container bg-white shadow">
+<div class="container bg-white">
   <% @pizzas.each do |pizza| %>
 
-    <div class="bg-light m-5">
-      <strong><%= pizza.name %></strong>
-      <% pizza.ingredients.each do |ingredient| %>
-        <p> <%= ingredient.name %> </p>
-      <% end %>
+    <div class="row bg-white">
+      <div class="col bg-light m-4 p-3 shadow">
 
-      <p>Cost: <%= pizza.cost %></p>
-      <p>Size: <%= pizza.size.name %></p>
-      <p>Order at: <%= I18n.l(pizza.created_at, format: :short) %></p>
+          <strong><%= pizza.name %></strong>
+          <% pizza.ingredients.each do |ingredient| %>
+            <p> <%= ingredient.name %> </p>
+          <% end %>
 
-  </div>
+          <p>Cost: <%= pizza.cost %></p>
+          <p>Size: <%= pizza.size.name %></p>
+          <p>Order at: <%= I18n.l(pizza.created_at, format: :short) %></p>
+
+      </div>
+    </div>
+
   <% end %>
 
 </div>

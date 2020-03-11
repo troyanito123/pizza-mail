@@ -20,7 +20,7 @@
           <td> <%= report.prevalence %> </td>
           <td>
             <%= report.days.join(', ') unless report.days.nil?%>
-            <%= report.day.strftime('%^A') if report.weekly? || report.daily? %>
+            <%= report.day.strftime('%^A') if report.weekly? %>
           </td>
           <td> <%= report.email %> </td>
           <td>

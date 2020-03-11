@@ -1,3 +1,2 @@
-
-<%= check_box(:report, :days, { :multiple => true }, day[:code], nil) %>
-<%= label_tag day[:name] %>
+<%= check_box_tag 'report[days][]', day[:code], @report.new_record? || @report.days.nil?  ? false : @report.days.include?(day[:code] ) %>
+<%= label_tag day[:name]%>
