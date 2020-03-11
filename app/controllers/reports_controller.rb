@@ -36,7 +36,7 @@ class ReportsController < ApplicationController
 
   def update
     report.assign_attributes report_params
-    report.days = nil unless report.custom?
+    report.days = nil unless report.custom? && report_params.include?(:days)
     if report.save
       flash[:success] = I18n.t 'report.update'
       redirect_to reports_path
