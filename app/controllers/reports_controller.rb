@@ -1,7 +1,6 @@
 class ReportsController < ApplicationController
 
   include ReportHelper
-
   before_action :set_days, only: [:new, :create, :edit, :update, :custom_prevalence]
 
   DAYS = [
@@ -53,16 +52,15 @@ class ReportsController < ApplicationController
 
   def report_on
     report.state = true
-    unless report.save
-      render :index
-    end
+    render :index unless report.save
+    # unless report.save
+    #   render :index
+    # end
   end
 
   def report_off
     report.state = false
-    unless report.save
-      render :index
-    end
+    render :index unless report.save
   end
 
   def custom_prevalence
@@ -83,9 +81,9 @@ class ReportsController < ApplicationController
   def report
     @report ||=
         case action_name
-        when "new"
+        when 'new'
           Report.new
-        when "create"
+        when 'create'
           Report.new(report_params)
         else
           Report.find_by(id: params[:id])
