@@ -54,6 +54,7 @@ en:
 
   report:
     create: "Report created successfully!"
+    update: "Report was updated successfully!"
     destroy: "Report was deleted!"
     error:
       create: "Ooups ..."

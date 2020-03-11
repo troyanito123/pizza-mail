@@ -19,14 +19,8 @@
           <td> <%= report.time.strftime('%H:%M') %> </td>
           <td> <%= report.prevalence %> </td>
           <td>
-            <% if report.days.empty? && report.prevalence == 'weekly'%>
-               <%= report.time.strftime('%A') %>
-            <% else %>
-              <% report.days.each do |d| %>
-                <%= d.name %>
-              <% end %>
-            <% end %>
-
+            <%= report.days.join(', ') unless report.days.nil?%>
+            <%= report.day.strftime('%^A') if report.weekly? || report.daily? %>
           </td>
           <td> <%= report.email %> </td>
           <td>

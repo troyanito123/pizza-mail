@@ -54,15 +54,14 @@ end
 desc "send customs reports"
 task :send_report_custom => :environment do
   puts "Sending report..."
-  reports = Report.on.custom.includes(:days)
+  reports = Report.on.custom
   today = Time.current.utc.strftime('%^A')
   reports.each do |report|
     days = report.days
     days.each do |day|
-      day_report = day.code
       time = report.time
       report.time = time + 1.day
-      if (report.save && day_report == today )
+      if (report.save && day.eql?(today))
         SendReportJob.set(wait_until: time).perform_later(report.id)
         report.queue!
       end

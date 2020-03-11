@@ -1,7 +1,3 @@
-
-
-
-
 $('#<%= @report.id %>-on').remove();
 $('#<%= @report.id %>').append(
     "<%= j link_to :Off, on_path(@report), method: :post, remote: true,id: "#{@report.id}-off", class: 'badge badge-danger' %>"

@@ -1,10 +1,7 @@
-
-
-
 if (<%= @prevalence == 'custom' %>) {
 
     $('#custom').html(
-        "<%= j collection_check_boxes(:custom, :days, @days, :id, :name, checked: @report.days.map(&:to_param) )%>"
+        "<%= j render partial: 'day', collection: @days %>"
     );
     $('#error-prevalence').show();
 }

@@ -3,7 +3,6 @@ class PizzasController < ApplicationController
   include PizzasHelper
 
   before_action :set_default_pizza, only: [:new]
-  before_action :set_type, only: [:add_ingredient, :remove_ingredient]
 
   def new
     @ingredients = Ingredient.all
@@ -37,31 +36,35 @@ class PizzasController < ApplicationController
   end
 
   def add_ingredient
-    current_ingredients << @type
+    current_ingredients << type
     save_changes_on_pizza
   end
 
   def remove_ingredient
-    current_ingredients.delete(@type)
+    current_ingredients.delete(type)
     save_changes_on_pizza
   end
 
   def change_size
     @old_size = current_size
-    @size = params[:size]
-    save_size(@size)
+    save_size(size)
     save_changes_on_pizza
   end
 
   private
-    def set_default_pizza
-      save_cost(10)
-      save_size('small')
-      save_ingredients([])
-    end
 
-    def set_type
-      @type = params[:type]
-    end
+  def set_default_pizza
+    save_cost(10)
+    save_size('small')
+    save_ingredients([])
+  end
+
+  def type
+    @type = params[:type]
+  end
+
+  def size
+    @size = params[:size]
+  end
 
 end

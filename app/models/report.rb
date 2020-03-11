@@ -1,8 +1,5 @@
 class Report < ApplicationRecord
 
-  has_many :report_days, dependent: :destroy
-  has_many :days, through: :report_days
-
   enum status: [ :ready, :queue, :done, :error ]
   enum prevalence: [ :daily, :weekly, :monthly, :custom ]
 
@@ -16,7 +13,7 @@ class Report < ApplicationRecord
   scope :on, ->{ where("state = ?", true) }
 
   def prevalence_validate
-    if custom? && days.empty?
+    if custom? && days.nil?
       errors.add(:prevalence, "You need to supply at least one day")
     end
   end
