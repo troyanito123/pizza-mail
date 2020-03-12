@@ -6,4 +6,4 @@ $('#<%= @type %>')
 
 $('#cost').html("<%= j current_cost %>");
 
-$('#ingredients').append("<span id=\"<%= j @type %>\" class=\"badge badge-primary\"> <%= j @type %> </span> ");
+$('#ingredients').append("<%= j tag.span( @type, id: @type, class: 'badge badge-primary') %>");

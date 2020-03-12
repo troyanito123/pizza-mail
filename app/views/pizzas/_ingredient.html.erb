@@ -1,16 +1,12 @@
-<div class="m-1">
 
-  <%= tag.h6(ingredient.name, class: 'text-center')%>
-  <%= image_tag ingredient.code + '.jpg', class: 'img-fluid img-thumbnail' %>
-  <%= tag.div link_to(
+<%= content_tag :div, class: 'm-1' do
+  tag.h6(ingredient.name, class: 'text-center') +
+  image_tag(ingredient.code + '.jpg', class: 'img-fluid img-thumbnail') +
+  tag.div( link_to(
                   :Add,
                   add_path(type: ingredient.code),
                   remote: true,
                   method: :post,
                   id: ingredient.code + '-add',
                   class: 'btn btn-primary btn-block'
-              ),
-              id: ingredient.code%>
-
-</div>
-
+              ), id: ingredient.code) end %>
